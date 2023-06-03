@@ -29,15 +29,6 @@ in
         Haskell language server to use.
       '';
     };
-
-    stack = lib.mkOption {
-      type = lib.types.nullOr lib.types.package;
-      default = pkgs.stack;
-      defaultText = "pkgs.stack";
-      description = ''
-        Haskell stack to use.
-      '';
-    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -47,7 +38,6 @@ in
       zlib
       hpack
     ]
-    ++ (lib.optional (cfg.languageServer != null) cfg.languageServer)
-    ++ (lib.optional (cfg.stack != null) cfg.stack);
+    ++ (lib.optional (cfg.languageServer != null) cfg.languageServer);
   };
 }

@@ -1,4 +1,0 @@
-name: stackbuilders/devenv
-windows:
-  - editor: nvim .
-  - terminal:
