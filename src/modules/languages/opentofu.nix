@@ -1,4 +1,9 @@
-{ pkgs, config, lib, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 let
   cfg = config.languages.opentofu;
@@ -16,8 +21,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    packages = with pkgs; [
+    packages = [
       cfg.package
     ];
+
+    git-hooks.hooks.terraform-format.package = cfg.package;
   };
 }
