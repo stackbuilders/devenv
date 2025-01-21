@@ -51,7 +51,7 @@ in
     ];
 
     git-hooks.hooks.terraform-format.package = lib.mkOverride (
-      lib.modules.defaultPriority - 1
+      lib.modules.defaultOverridePriority - 1
     ) cfg.package;
   };
 }
