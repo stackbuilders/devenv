@@ -50,6 +50,8 @@ in
       tfsec
     ];
 
-    git-hooks.hooks.terraform-format.package = cfg.package;
+    git-hooks.hooks.terraform-format.package = lib.mkOverride (
+      lib.modules.defaultPriority - 1
+    ) cfg.package;
   };
 }
