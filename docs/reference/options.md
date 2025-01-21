@@ -2873,7 +2873,7 @@ Format TOML files with taplo fmt
 
 **` terraform-format `**
 
-Format terraform (` .tf `) files.
+Format Terraform (` .tf `) files.
 
 **` terraform-validate `**
 
@@ -41842,7 +41842,7 @@ Format TOML files with taplo fmt
 
 **` terraform-format `**
 
-Format terraform (` .tf `) files.
+Format Terraform (` .tf `) files.
 
 **` terraform-validate `**
 
