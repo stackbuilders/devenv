@@ -36,19 +36,21 @@ Let's first prepare the job environment for devenv.
 
 ```yaml
 steps:
-- uses: actions/checkout@v5
+- uses: actions/checkout@v6
 - uses: cachix/install-nix-action@v31
+  with:
+    nix_path: nixpkgs=channel:nixpkgs-unstable
 - uses: cachix/cachix-action@v16
   with:
     name: devenv
 - name: Install devenv.sh
-  run: nix profile install nixpkgs#devenv
+  run: nix profile add nixpkgs#devenv
 ```
 
 The above snippet does the following:
 
 1. Checks out the repository.
-2. Installs and sets up [Nix][nix].
+2. Installs and sets up [Nix][nix] with `nixpkgs-unstable` as the preconfigured `nixpkgs` channel.
 3. Configures [Nix][nix] to use the devenv cache provided by [Cachix][cachix] to speed up the installation.
 4. Installs devenv.
 
@@ -139,13 +141,15 @@ jobs:
     runs-on: {{ '${{ matrix.os }}' }}
 
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v6
     - uses: cachix/install-nix-action@v31
+      with:
+        nix_path: nixpkgs=channel:nixpkgs-unstable
     - uses: cachix/cachix-action@v16
       with:
         name: devenv
     - name: Install devenv.sh
-      run: nix profile install nixpkgs#devenv
+      run: nix profile add nixpkgs#devenv
 
     - name: Build the devenv shell and run any pre-commit hooks
       run: devenv test
